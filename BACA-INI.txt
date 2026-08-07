@@ -1,0 +1,50 @@
+PANDUAN PEMAKAIAN — Kartu Ulang Tahun Muhammad Almubarak
+=========================================================
+
+STRUKTUR HALAMAN (5 bagian, scroll ke bawah atau klik menu atas):
+1. Beranda   — sambutan + tulip putih mekar otomatis
+2. Kenangan  — kue & 8 lilin interaktif, confetti otomatis
+3. Galeri    — 10 slot foto
+4. Surat     — pesan pribadi
+5. Doa       — kartu harapan
+
+CARA MENJALANKAN
+-----------------
+1. Buka folder ini di VS Code.
+2. Klik kanan file index.html → "Open with Live Server"
+   (atau jalankan lewat PowerShell: cd ke folder ini, lalu ketik "start index.html")
+
+CARA MENAMBAHKAN FOTO (bagian Galeri)
+--------------------------------------
+- Masukkan 10 foto ke folder foto/
+- Beri nama PERSIS: foto1.jpg, foto2.jpg, foto3.jpg ... sampai foto10.jpg
+- Tidak perlu format .jpg semua? Kalau file kamu .png/.jpeg, ganti ekstensi
+  di baris "img.src = `foto/foto${i}.jpg`" pada bagian <script> paling bawah index.html
+- Slot yang belum diisi otomatis akan menampilkan kotak placeholder "Foto X",
+  jadi aman kalau belum lengkap 10.
+
+CARA MENULIS PESAN (bagian Surat)
+------------------------------------
+- Buka index.html di VS Code
+- Cari teks: TULIS PESANMU DI SINI
+- Ganti paragraf placeholder <p>...</p> di bawah komentar itu dengan pesanmu sendiri
+- Boleh tambah paragraf baru dengan menyalin tag <p>...</p>
+
+CARA MENGUBAH KARTU DOA (bagian Doa & Harapan)
+------------------------------------------------
+- Cari teks: EDIT KARTU DOA DI BAWAH INI SESUKAMU
+- Setiap kartu ada di dalam <div class="doa-card">...</div>
+- Ganti emoji di <span class="icon"> dan teks doanya sesuka kamu
+- Boleh tambah/kurangi kartu dengan copy-paste blok div tersebut
+
+UKURAN HALAMAN
+----------------
+Setiap bagian dirancang mengikuti rasio 16:9 di layar besar (laptop/monitor),
+dan otomatis menyesuaikan jadi tampilan penuh di HP.
+
+MENGUNGGAH KE GITHUB PAGES (opsional, biar bisa dibagikan lewat link)
+------------------------------------------------------------------------
+1. Buat repository baru di GitHub, upload semua isi folder ini (index.html + foto/)
+2. Masuk ke Settings → Pages
+3. Pilih branch "main" dan folder "/root", lalu Save
+4. Tunggu 1-2 menit, link akan muncul di bagian atas halaman Pages

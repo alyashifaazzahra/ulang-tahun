@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selamat Ulang Tahun, Muhammad Almubarak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#04050a;
+    --deep:#0a0d1c;
+    --mid:#12172c;
+    --panel:#161c33;
+    --ink:#f4f0e6;
+    --ink-soft:#9aa3c2;
+    --ink-faint:#6b7396;
+    --gold:#e8b563;
+    --gold-soft:#f2cd8a;
+    --tulip:#f7f5ee;
+    --tulip-shade:#d9d6ca;
+    --leaf:#4f8c62;
+    --leaf-deep:#2b4a37;
+    --card:rgba(255,255,255,0.045);
+    --card-border:rgba(232,181,99,0.18);
+    --slide-max: 1280px;
+    --display: 'Fraunces', serif;
+    --body-font: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:var(--body-font);
+    color:var(--ink);
+    background:var(--black);
+    scroll-snap-type:y proximity;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--gold-soft);color:var(--black);}
+
+  /* ---------- STARS (fixed, whole page) ---------- */
+  #starLayer{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
+  }
+  .star{
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+    animation:twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.25;transform:scale(1);}
+    50%{opacity:1;transform:scale(1.3);}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    gap:clamp(14px,3vw,36px);
+    padding:18px 12px;
+    background:linear-gradient(to bottom, rgba(4,5,10,0.85), rgba(4,5,10,0));
+    backdrop-filter:blur(2px);
+  }
+  nav a{
+    font-family:var(--body-font);
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    text-decoration:none;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+    transition:border-color .3s ease, color .3s ease;
+  }
+  nav a:hover, nav a.active{
+    color:var(--gold-soft);
+    border-bottom-color:var(--gold);
+  }
+
+  /* ---------- SLIDE FRAME (16:9) ---------- */
+  .slide{
+    scroll-snap-align:start;
+    width:100%;
+    max-width:var(--slide-max);
+    margin:0 auto;
+    aspect-ratio:16/9;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+    padding:80px 6vw 40px;
+  }
+  @media (max-width:760px){
+    .slide{aspect-ratio:auto;min-height:100svh;padding:100px 6vw 50px;}
+  }
+
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:14px;
+  }
+
+  h1,h2{font-family:var(--display);font-weight:500;color:var(--ink);}
+
+  /* planet decoration */
+  .planet{
+    position:absolute;
+    border-radius:50%;
+    z-index:1;
+    opacity:.9;
+  }
+  .planet::after{
+    content:"";
+    position:absolute;
+    inset:-18% -40%;
+    border:2px solid rgba(232,181,99,0.35);
+    border-radius:50%;
+    transform:rotate(-18deg) scaleY(0.32);
+  }
+
+  /* ================= SECTION 1: BERANDA / LOGIN ================= */
+  #beranda{
+    background:radial-gradient(ellipse at 50% -10%, rgba(232,181,99,0.10), transparent 55%),
+      linear-gradient(180deg,var(--black) 0%, var(--deep) 60%, var(--mid) 100%);
+  }
+
+  .beranda-inner{
+    position:relative;
+    z-index:3;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .beranda-inner h1{
+    font-size:clamp(30px,5.4vw,58px);
+    line-height:1.05;
+    margin-bottom:8px;
+  }
+  .beranda-inner h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+
+  .neon-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-style:italic;
+    font-size:clamp(24px,4.4vw,46px);
+    color:#fdf3d8;
+    letter-spacing:.02em;
+    margin-bottom:6px;
+    text-shadow:
+      0 0 6px rgba(253,243,216,0.9),
+      0 0 16px rgba(242,205,138,0.85),
+      0 0 34px rgba(232,181,99,0.7),
+      0 0 60px rgba(232,181,99,0.45);
+    animation:neonPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes neonPulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.82;}
+  }
+  .beranda-name{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(20px,3vw,30px);
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .beranda-date{
+    font-size:13px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:34px;
+  }
+
+  .enter-btn{
+    font-family:var(--body-font);
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.05em;
+    color:var(--black);
+    background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+    border:none;
+    padding:14px 34px;
+    border-radius:100px;
+    cursor:pointer;
+    box-shadow:0 10px 26px -8px rgba(232,181,99,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .enter-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(232,181,99,.6);}
+
+  .scroll-hint{
+    margin-top:18px;
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    opacity:.8;
+  }
+
+  /* ----- tulip field ----- */
+  .tulip-field{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:34%;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    gap:clamp(-10px, 1vw, 6px);
+    z-index:2;
+    pointer-events:none;
+  }
+  .tulip{
+    transform-origin:bottom center;
+    transform:scaleY(0);
+    animation:growTulip 1.1s cubic-bezier(.34,1.56,.64,1) forwards, tulipGlow 3s ease-in-out infinite;
+    animation-fill-mode:forwards;
+    width:clamp(50px,7vw,100px);
+    height:auto;
+    filter:drop-shadow(0 0 10px rgba(242,205,138,0.55)) drop-shadow(0 0 26px rgba(232,181,99,0.35));
+  }
+  @keyframes tulipGlow{
+    0%,100%{filter:drop-shadow(0 0 10px rgba(242,205,138,0.55)) drop-shadow(0 0 26px rgba(232,181,99,0.35));}
+    50%{filter:drop-shadow(0 0 16px rgba(242,205,138,0.8)) drop-shadow(0 0 40px rgba(232,181,99,0.55));}
+  }
+  @keyframes growTulip{
+    0%{transform:scaleY(0) translateY(10px);opacity:0;}
+    60%{opacity:1;}
+    100%{transform:scaleY(1) translateY(0);opacity:1;}
+  }
+  .tulip:nth-child(1){animation-delay:.15s;}
+  .tulip:nth-child(2){animation-delay:.45s;}
+  .tulip:nth-child(3){animation-delay:.3s;}
+  .tulip:nth-child(4){animation-delay:.6s;}
+  .tulip:nth-child(5){animation-delay:.35s;}
+  .tulip:nth-child(6){animation-delay:.55s;}
+  .tulip:nth-child(7){animation-delay:.2s;}
+  .tulip:nth-child(8){animation-delay:.5s;}
+  .tulip:nth-child(9){animation-delay:.4s;}
+
+  .bloom-petal{
+    transform-origin:center bottom;
+    animation:petalOpen 1s ease-out forwards;
+    animation-delay:inherit;
+    opacity:0;
+  }
+  @keyframes petalOpen{
+    0%{opacity:0;transform:scale(.4) rotate(0deg);}
+    100%{opacity:1;transform:scale(1) rotate(0deg);}
+  }
+
+  .petal{
+    position:absolute;
+    width:9px;height:13px;
+    background:linear-gradient(180deg,#fff8e4,var(--gold-soft));
+    border-radius:60% 60% 60% 0;
+    opacity:.7;
+    box-shadow:0 0 8px rgba(242,205,138,0.6);
+    animation:drift 9s linear infinite;
+    z-index:1;
+  }
+  @keyframes drift{
+    0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0;}
+    10%{opacity:.7;}
+    100%{transform:translateY(60vh) translateX(40px) rotate(220deg);opacity:0;}
+  }
+
+  /* ================= SECTION 2: KENANGAN (CAKE) ================= */
+  #kenangan{
+    background:linear-gradient(180deg,var(--mid) 0%, var(--deep) 100%);
+  }
+  #kenangan .balloon{
+    position:absolute;
+    width:44px;height:56px;
+    border-radius:50% 50% 50% 50%/58% 58% 42% 42%;
+    opacity:.55;
+    filter:saturate(0.7);
+    animation:floatUp 7s ease-in-out infinite;
+    z-index:1;
+  }
+  #kenangan .balloon::after{
+    content:"";
+    position:absolute;
+    left:50%;bottom:-30px;
+    width:1px;height:30px;
+    background:rgba(154,163,194,.35);
+    transform:translateX(-50%);
+  }
+  @keyframes floatUp{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-18px);}
+  }
+
+  .cake-wrap{
+    position:relative;
+    z-index:3;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  .cake-wrap h2{font-size:clamp(24px,3.6vw,36px);margin-bottom:6px;}
+  .cake-wrap p.sub{font-size:14px;color:var(--ink-soft);margin-bottom:26px;max-width:520px;}
+
+  .cake{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .candles{
+    display:flex;
+    gap:10px;
+    margin-bottom:-6px;
+    z-index:2;
+  }
+  .candle{
+    width:8px;
+    height:34px;
+    background:linear-gradient(180deg,var(--ink),var(--gold-soft));
+    border-radius:2px;
+    position:relative;
+    cursor:pointer;
+  }
+  .flame{
+    position:absolute;
+    top:-16px;left:50%;
+    transform:translateX(-50%);
+    width:12px;height:18px;
+    background:radial-gradient(circle at 50% 70%,#fff59a,var(--gold) 70%);
+    border-radius:60% 60% 50% 50%/70% 70% 40% 40%;
+    animation:flicker 1.4s ease-in-out infinite;
+    transition:opacity .3s ease, transform .3s ease;
+    box-shadow:0 0 12px rgba(232,181,99,0.6);
+  }
+  @keyframes flicker{
+    0%,100%{transform:translateX(-50%) scale(1);}
+    50%{transform:translateX(-50%) scale(0.85) rotate(-3deg);}
+  }
+  .candle.blown .flame{opacity:0;transform:translateX(-50%) scale(0);}
+
+  .cake-body{
+    width:min(70vw,340px);
+  }
+  .cake-body svg{width:100%;height:auto;display:block;}
+
+  .reset-btn{
+    margin-top:26px;
+    font-family:var(--body-font);
+    font-size:12px;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    background:transparent;
+    border:1px solid var(--ink-faint);
+    border-radius:100px;
+    padding:9px 20px;
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+  .reset-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--black);}
+
+  #confetti-canvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:200;
+  }
+
+  /* ================= SECTION 3: GALERI ================= */
+  #galeri{background:linear-gradient(180deg,var(--deep) 0%, var(--black) 100%);}
+  .galeri-head{text-align:center;margin-bottom:28px;position:relative;z-index:2;}
+  .galeri-head h2{font-size:clamp(24px,3.4vw,34px);}
+  .galeri-head p{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+  .galeri-head code{color:var(--gold-soft);}
+
+  .grid-foto{
+    position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    width:100%;
+    max-width:980px;
+  }
+  @media(max-width:760px){.grid-foto{grid-template-columns:repeat(2,1fr);}}
+
+  .foto-slot{
+    aspect-ratio:3/4;
+    border-radius:10px;
+    overflow:hidden;
+    background:var(--card);
+    border:1px solid var(--card-border);
+    box-shadow:0 8px 20px -12px rgba(0,0,0,.6);
+    position:relative;
+  }
+  .foto-slot img{
+    width:100%;height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .foto-slot .placeholder{
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;
+    gap:6px;
+    background:linear-gradient(160deg,var(--panel),var(--deep));
+    color:var(--ink-faint);
+    font-size:11px;
+    text-align:center;
+    padding:8px;
+  }
+  .foto-slot .placeholder span{font-size:10px;opacity:.7;}
+
+  /* ================= SECTION 4: SURAT ================= */
+  #surat{
+    background:linear-gradient(180deg,var(--black) 0%, var(--deep) 100%);
+  }
+  .surat-card{
+    position:relative;z-index:2;
+    width:min(90vw,640px);
+    background:var(--card);
+    border-radius:18px;
+    padding:clamp(26px,4vw,50px);
+    box-shadow:0 24px 60px -24px rgba(0,0,0,.7);
+    border:1px solid var(--card-border);
+    backdrop-filter:blur(6px);
+  }
+  .surat-card .eyebrow{text-align:center;}
+  .surat-card h2{
+    text-align:center;
+    font-size:clamp(24px,3.2vw,32px);
+    margin-bottom:22px;
+  }
+  .surat-card h2 em{font-style:italic;color:var(--gold);}
+  .surat-body p{
+    font-family:var(--body-font);
+    font-size:15px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .surat-body code{color:var(--gold-soft);}
+  .surat-signature{
+    margin-top:20px;
+    font-family:var(--display);
+    font-style:italic;
+    font-size:18px;
+    text-align:right;
+    color:var(--gold-soft);
+  }
+  .edit-note{
+    margin-top:26px;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--ink-faint);
+    opacity:.8;
+  }
+
+  /* ================= SECTION 5: DOA & HARAPAN ================= */
+  #doa{background:linear-gradient(180deg,var(--deep) 0%, var(--black) 100%);}
+  .doa-grid{
+    position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    width:100%;
+    max-width:920px;
+  }
+  @media(max-width:760px){.doa-grid{grid-template-columns:1fr 1fr;}}
+  .doa-card{
+    background:var(--card);
+    border:1px solid var(--card-border);
+    border-radius:14px;
+    padding:20px 16px;
+    box-shadow:0 12px 30px -18px rgba(0,0,0,.7);
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    backdrop-filter:blur(6px);
+  }
+  .doa-card .icon{font-size:20px;margin-bottom:10px;display:block;}
+
+  footer{
+    text-align:center;
+    font-size:11px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    padding:30px 0 50px;
+    opacity:.7;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ================= GERBANG KODE (LOCK SCREEN) — kode: 1808 ================= */
+  #gerbangKode{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:radial-gradient(ellipse at 50% 20%, rgba(232,181,99,0.08), transparent 55%),
+      linear-gradient(180deg,#04050a 0%, #0a0d1c 60%, #12172c 100%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    text-align:center;
+    transition:opacity .6s ease, visibility .6s ease;
+  }
+  #gerbangKode.terbuka{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+
+  #gerbangStars{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+  #gerbangStars .g-star{
+    position:absolute;
+    background:#fff;
+    border-radius:50%;
+    animation:gTwinkle ease-in-out infinite;
+  }
+  @keyframes gTwinkle{
+    0%,100%{opacity:.25;}
+    50%{opacity:1;}
+  }
+
+  .gerbang-flower{
+    width:110px;
+    margin-bottom:8px;
+    position:relative;
+    z-index:2;
+    filter:drop-shadow(0 0 14px rgba(242,205,138,0.6)) drop-shadow(0 0 30px rgba(232,181,99,0.4));
+    animation:gGlow 3s ease-in-out infinite;
+  }
+  .gerbang-flower svg{width:100%;height:auto;display:block;}
+  @keyframes gGlow{
+    0%,100%{filter:drop-shadow(0 0 14px rgba(242,205,138,0.6)) drop-shadow(0 0 30px rgba(232,181,99,0.4));}
+    50%{filter:drop-shadow(0 0 22px rgba(242,205,138,0.85)) drop-shadow(0 0 44px rgba(232,181,99,0.6));}
+  }
+
+  .gerbang-eyebrow{
+    position:relative;z-index:2;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:12px;
+    letter-spacing:.35em;
+    text-transform:uppercase;
+    color:#f2cd8a;
+    margin-bottom:10px;
+  }
+  .gerbang-title{
+    position:relative;z-index:2;
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:clamp(24px,4.2vw,36px);
+    color:#f4f0e6;
+    line-height:1.15;
+    margin-bottom:26px;
+  }
+  .gerbang-title em{font-style:italic;color:#e8b563;}
+
+  .gerbang-pin{
+    position:relative;z-index:2;
+    display:flex;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .pin-box{
+    width:48px;height:58px;
+    text-align:center;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:22px;
+    font-weight:600;
+    color:#f4f0e6;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(232,181,99,0.35);
+    border-radius:10px;
+    outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .pin-box:focus{
+    border-color:#e8b563;
+    box-shadow:0 0 0 3px rgba(232,181,99,0.2);
+  }
+
+  .gerbang-error{
+    position:relative;z-index:2;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-size:12px;
+    color:#e08a8a;
+    height:16px;
+    margin-bottom:18px;
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .gerbang-error.tampil{opacity:1;}
+
+  .gerbang-pin.salah .pin-box{
+    border-color:#e08a8a;
+    animation:gShake .4s ease;
+  }
+  @keyframes gShake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-6px);}
+    75%{transform:translateX(6px);}
+  }
+
+  .gerbang-btn{
+    position:relative;z-index:2;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.05em;
+    color:#04050a;
+    background:linear-gradient(135deg,#f2cd8a,#e8b563);
+    border:none;
+    padding:14px 40px;
+    border-radius:100px;
+    cursor:pointer;
+    box-shadow:0 10px 26px -8px rgba(232,181,99,0.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .gerbang-btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(232,181,99,.6);}
+</style>
+</head>
+<body>
+
+<!-- ======================= GERBANG KODE (LOCK SCREEN) — kode: 1808 ======================= -->
+<div id="gerbangKode">
+  <div id="gerbangStars"></div>
+
+  <div class="gerbang-flower">
+    <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gPetal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fff8e4"/>
+          <stop offset="60%" stop-color="#f2cd8a"/>
+          <stop offset="100%" stop-color="#e8b563"/>
+        </linearGradient>
+      </defs>
+      <path d="M100 90 L100 210" stroke="#4f8c62" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 140 Q 70 148 62 118" stroke="#4f8c62" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M100 155 Q 132 160 140 128" stroke="#4f8c62" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <g>
+        <path d="M100 10 C70 10 66 48 72 74 C78 90 122 90 128 74 C134 48 130 10 100 10Z" fill="url(#gPetal)" stroke="#fdf3d8" stroke-width="1.5"/>
+        <circle cx="100" cy="64" r="10" fill="#fff59a" opacity="0.9"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="gerbang-eyebrow">Kartu Ini Terkunci</p>
+  <h2 class="gerbang-title">Masukkan Kode<br><em>untuk Membuka</em></h2>
+
+  <div class="gerbang-pin" id="gerbangPinBoxes">
+    <input type="text" inputmode="numeric" maxlength="1" class="pin-box" data-index="0">
+    <input type="text" inputmode="numeric" maxlength="1" class="pin-box" data-index="1">
+    <input type="text" inputmode="numeric" maxlength="1" class="pin-box" data-index="2">
+    <input type="text" inputmode="numeric" maxlength="1" class="pin-box" data-index="3">
+  </div>
+
+  <p class="gerbang-error" id="gerbangError">Kode salah, coba lagi.</p>
+  <button class="gerbang-btn" id="gerbangBtn">Buka</button>
+</div>
+
+<div id="starLayer"></div>
+
+<nav>
+  <a href="#beranda" class="active">Beranda</a>
+  <a href="#kenangan">Kenangan</a>
+  <a href="#galeri">Galeri</a>
+  <a href="#surat">Surat</a>
+  <a href="#doa">Doa</a>
+</nav>
+
+<!-- ======================= 1. BERANDA (LOGIN / SAMBUTAN) ======================= -->
+<section id="beranda" class="slide">
+  <div class="planet" style="width:70px;height:70px;top:14%;right:9%;background:radial-gradient(circle at 32% 30%, #f2cd8a, #b9793a 60%, #6b3f1f);box-shadow:0 0 30px rgba(232,181,99,.25);"></div>
+  <div class="planet" style="width:26px;height:26px;top:26%;left:10%;background:radial-gradient(circle at 32% 30%, #cdd7f0, #6b7fae 70%);"></div>
+
+  <div class="beranda-inner">
+    <p class="eyebrow">18 Agustus 2003 &middot; Sebuah Kartu Untukmu</p>
+    <p class="neon-title">I Love You, Sayangku</p>
+    <h1>Selamat Ulang Tahun,<br><em>Sayangku</em></h1>
+    <p class="beranda-name">Muhammad Almubarak</p>
+    <p class="beranda-date">Semoga harimu semekar tulip di bawah ini</p>
+    <button class="enter-btn" onclick="document.getElementById('kenangan').scrollIntoView({behavior:'smooth'})">Buka Halaman &rarr;</button>
+    <p class="scroll-hint">Scroll ke bawah</p>
+  </div>
+
+  <div class="tulip-field" id="tulipField"></div>
+</section>
+
+<!-- ======================= 2. KENANGAN (KUE & LILIN) ======================= -->
+<section id="kenangan" class="slide">
+  <div class="planet" style="width:44px;height:44px;left:8%;top:16%;background:radial-gradient(circle at 32% 30%, #f2cd8a, #8a5a2c 70%);"></div>
+  <div class="balloon" style="left:14%;top:55%;background:#5c4d75;animation-delay:2s;"></div>
+  <div class="balloon" style="right:14%;top:50%;background:#3f6b5c;animation-delay:1.6s;"></div>
+
+  <div class="cake-wrap">
+    <p class="eyebrow">Kenangan Kita</p>
+    <h2>Tiup Lilinnya, Satu per Satu</h2>
+    <p class="sub">Klik setiap lilin untuk memadamkannya — begitu semuanya padam, kejutan kecil akan muncul.</p>
+
+    <div class="cake">
+      <div class="candles" id="candles"></div>
+      <div class="cake-body">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="110" width="260" height="40" rx="8" fill="#2a2f45"/>
+          <rect x="20" y="110" width="260" height="10" fill="#343a56"/>
+          <rect x="35" y="70" width="230" height="45" rx="8" fill="#333a58"/>
+          <rect x="35" y="70" width="230" height="10" fill="#3c4468"/>
+          <path d="M35 70 Q 60 55 85 70 T 135 70 T 185 70 T 235 70 T 265 70" fill="none" stroke="#e8b563" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="70" cy="95" r="4" fill="#e8b563"/>
+          <circle cx="120" cy="100" r="4" fill="#cdd7f0"/>
+          <circle cx="170" cy="94" r="4" fill="#f2cd8a"/>
+          <circle cx="220" cy="99" r="4" fill="#9aa3c2"/>
+        </svg>
+      </div>
+    </div>
+
+    <button class="reset-btn" id="resetCandles">Nyalakan Ulang Lilin</button>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+</section>
+
+<!-- ======================= 3. GALERI ======================= -->
+<section id="galeri" class="slide">
+  <div class="galeri-head">
+    <p class="eyebrow">Galeri</p>
+    <h2>Separuh Momen Kita</h2>
+    <p>ini hanya 10 foto di folder <code>foto/</code> dengan nama <code>foto1.jpg</code> sampai <code>foto10.jpg</code> — otomatis muncul di sini, tidak perlu ubah kode apa pun.</p>
+  </div>
+
+  <div class="grid-foto" id="gridFoto"></div>
+</section>
+
+<!-- ======================= 4. SURAT ======================= -->
+<section id="surat" class="slide">
+  <div class="surat-card">
+    <p class="eyebrow">Sebuah Surat</p>
+    <h2>Untuk <em>Muhammad Almubarak</em></h2>
+
+    <!-- ====== TULIS PESANMU DI ANTARA KOMENTAR INI ====== -->
+    <div class="surat-body">
+      <p>Selamat ulang tahun ke-23, sayangku cintaku. Makasih ya udah selalu sabar sama saya, perhatian bgt padahal ga pernah diminta. Saya tuh sadar banget saya beruntung punya kita. Semoga makin sehat, makin lancar semua urusannya, dan semua kebaikan yang kita kasih ke orang-orang balik lagi ke kita berkali-kali lipat. Happy birthday sayangkuu, love youu 🤍🎂.</p>
+      <p>love love love love dari alya.</p>
+    </div>
+    <!-- ====== BATAS AKHIR PESAN ====== -->
+
+    <p class="surat-signature">— dari alya untuk Muhammad Almubarak dengan sayang</p>
+    <p class="edit-note">Edit teks di atas langsung lewat VS Code, simpan, lalu refresh browser.</p>
+  </div>
+</section>
+
+<!-- ======================= 5. DOA & HARAPAN ======================= -->
+<section id="doa" class="slide">
+  <div class="galeri-head">
+    <p class="eyebrow">Doa &amp; Harapan</p>
+    <h2>Untuk Tahun yang Akan Datang</h2>
+  </div>
+
+  <!-- ====== EDIT KARTU DOA DI BAWAH INI SESUKAMU ====== -->
+  <div class="doa-grid">
+    <div class="doa-card"><span class="icon">🌷</span>Semoga tahun ini penuh dengan hal-hal baik yang datang tanpa diminta.</div>
+    <div class="doa-card"><span class="icon">🪐</span>Semoga harimu selalu tenang seperti langit malam, apa pun yang terjadi.</div>
+    <div class="doa-card"><span class="icon">✨</span>Semoga setiap doa baik yang kamu panjatkan, kembali padamu berlipat ganda.</div>
+    <div class="doa-card"><span class="icon">🕊️</span>Semoga selalu diberi kesehatan, ketenangan, dan orang-orang yang tulus menyayangimu.</div>
+    <div class="doa-card"><span class="icon">🎯</span>Semoga semua yang kamu perjuangkan sampai pada waktu yang tepat.</div>
+  </div>
+  <!-- ====== BATAS AKHIR DOA ====== -->
+
+  <footer>Dibuat dengan hangat, untuk Muhammad Almubarak · 18 Agustus</footer>
+</section>
+
+<script>
+  // ---------- Star field ----------
+  (function(){
+    const layer = document.getElementById('starLayer');
+    const count = 90;
+    for(let i=0;i<count;i++){
+      const s = document.createElement('div');
+      s.className='star';
+      const size = Math.random()*2+1;
+      s.style.width=size+'px';
+      s.style.height=size+'px';
+      s.style.left = Math.random()*100+'%';
+      s.style.top = Math.random()*100+'%';
+      s.style.animationDuration = (2+Math.random()*4)+'s';
+      s.style.animationDelay = (Math.random()*4)+'s';
+      layer.appendChild(s);
+    }
+  })();
+
+  // ---------- Tulip field ----------
+  (function(){
+    const field = document.getElementById('tulipField');
+    const count = window.innerWidth < 700 ? 6 : 9;
+    for(let i=0;i<count;i++){
+      const wrap = document.createElement('div');
+      wrap.className = 'tulip';
+      wrap.innerHTML = `
+        <svg viewBox="0 0 60 130" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="petalGrad${i}" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fff8e4"/>
+              <stop offset="55%" stop-color="#f2cd8a"/>
+              <stop offset="100%" stop-color="#e8b563"/>
+            </linearGradient>
+            <radialGradient id="coreGrad${i}" cx="50%" cy="70%" r="60%">
+              <stop offset="0%" stop-color="#fff59a"/>
+              <stop offset="100%" stop-color="#f2cd8a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <path d="M30 60 L30 128" stroke="#4f8c62" stroke-width="3" stroke-linecap="round"/>
+          <path d="M30 90 Q 8 95 4 70" stroke="#4f8c62" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M30 100 Q 52 104 56 80" stroke="#4f8c62" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <g class="bloom-petal">
+            <path d="M30 8 C10 8 8 34 12 52 C16 62 44 62 48 52 C52 34 50 8 30 8Z" fill="url(#petalGrad${i})" stroke="#fdf3d8" stroke-width="1"/>
+            <path d="M30 12 C18 14 16 34 20 48 C23 55 37 55 40 48 C44 34 42 14 30 12Z" fill="url(#coreGrad${i})"/>
+            <circle cx="30" cy="46" r="7" fill="#fff59a" opacity="0.85"/>
+          </g>
+        </svg>`;
+      field.appendChild(wrap);
+    }
+    for(let i=0;i<10;i++){
+      const p = document.createElement('div');
+      p.className='petal';
+      p.style.left = Math.random()*100+'%';
+      p.style.top = (Math.random()*40)+'%';
+      p.style.animationDuration = (7+Math.random()*6)+'s';
+      p.style.animationDelay = (Math.random()*8)+'s';
+      document.getElementById('beranda').appendChild(p);
+    }
+  })();
+
+  const sections = document.querySelectorAll('section.slide');
+  const navLinks = document.querySelectorAll('nav a');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
+        if(active) active.classList.add('active');
+      }
+    });
+  },{threshold:0.5});
+  sections.forEach(s=>io.observe(s));
+
+  const candleWrap = document.getElementById('candles');
+  const TOTAL_CANDLES = 8;
+  function buildCandles(){
+    candleWrap.innerHTML='';
+    for(let i=0;i<TOTAL_CANDLES;i++){
+      const c = document.createElement('div');
+      c.className='candle';
+      c.innerHTML='<div class="flame"></div>';
+      c.addEventListener('click',()=>{
+        if(c.classList.contains('blown')) return;
+        c.classList.add('blown');
+        checkAllBlown();
+      });
+      candleWrap.appendChild(c);
+    }
+  }
+  buildCandles();
+
+  function checkAllBlown(){
+    const all = candleWrap.querySelectorAll('.candle');
+    const blown = candleWrap.querySelectorAll('.candle.blown');
+    if(all.length === blown.length){
+      launchConfetti();
+    }
+  }
+
+  document.getElementById('resetCandles').addEventListener('click', buildCandles);
+
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const colors = ['#e8b563','#cdd7f0','#f2cd8a','#9aa3c2','#f7f5ee'];
+  function launchConfetti(){
+    const pieces = [];
+    for(let i=0;i<160;i++){
+      pieces.push({
+        x: Math.random()*canvas.width,
+        y: -20 - Math.random()*canvas.height*0.3,
+        w: 6+Math.random()*6,
+        h: 8+Math.random()*10,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        rot: Math.random()*360,
+        vRot: -6+Math.random()*12,
+        vy: 2+Math.random()*3,
+        vx: -1.5+Math.random()*3,
+      });
+    }
+    let frame=0;
+    const maxFrames = 260;
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pieces.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy; p.rot+=p.vRot;
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.rot*Math.PI/180);
+        ctx.fillStyle=p.color;
+        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+        ctx.restore();
+      });
+      frame++;
+      if(frame<maxFrames){
+        requestAnimationFrame(animate);
+      } else {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+      }
+    }
+    animate();
+  }
+
+  const gridFoto = document.getElementById('gridFoto');
+  const EXT_LIST = ['jpg','jpeg','png','webp'];
+  for(let i=1;i<=10;i++){
+    const slot = document.createElement('div');
+    slot.className='foto-slot';
+    const img = document.createElement('img');
+    img.alt = `Foto ${i}`;
+    img.loading = 'lazy';
+    let extIndex = 0;
+    img.src = `foto/foto${i}.${EXT_LIST[extIndex]}`;
+    const placeholder = document.createElement('div');
+    placeholder.className='placeholder';
+    placeholder.innerHTML = `Foto ${i}<span>foto/foto${i}.jpg</span>`;
+    img.addEventListener('error', ()=>{
+      extIndex++;
+      if(extIndex < EXT_LIST.length){
+        img.src = `foto/foto${i}.${EXT_LIST[extIndex]}`;
+      } else {
+        img.style.display='none';
+        slot.appendChild(placeholder);
+      }
+    });
+    slot.appendChild(img);
+    gridFoto.appendChild(slot);
+  }
+
+  // ---------- Gerbang Kode (lock screen), kode: 1808 ----------
+  (function(){
+    const KODE_RAHASIA = "1808";
+
+    const gStars = document.getElementById('gerbangStars');
+    for(let i=0;i<60;i++){
+      const s = document.createElement('div');
+      s.className='g-star';
+      const size = Math.random()*2+1;
+      s.style.width=size+'px';
+      s.style.height=size+'px';
+      s.style.left = Math.random()*100+'%';
+      s.style.top = Math.random()*100+'%';
+      s.style.animationDuration = (2+Math.random()*4)+'s';
+      s.style.animationDelay = (Math.random()*4)+'s';
+      gStars.appendChild(s);
+    }
+
+    const boxes = Array.from(document.querySelectorAll('.pin-box'));
+    const pinWrap = document.getElementById('gerbangPinBoxes');
+    const errorEl = document.getElementById('gerbangError');
+    const gerbang = document.getElementById('gerbangKode');
+    const btn = document.getElementById('gerbangBtn');
+
+    boxes.forEach((box, idx)=>{
+      box.addEventListener('input', ()=>{
+        box.value = box.value.replace(/[^0-9]/g,'');
+        if(box.value && idx < boxes.length-1){
+          boxes[idx+1].focus();
+        }
+      });
+      box.addEventListener('keydown', (e)=>{
+        if(e.key === 'Backspace' && !box.value && idx > 0){
+          boxes[idx-1].focus();
+        }
+        if(e.key === 'Enter'){ coba(); }
+      });
+    });
+
+    btn.addEventListener('click', coba);
+
+    function coba(){
+      const kodeInput = boxes.map(b=>b.value).join('');
+      if(kodeInput === KODE_RAHASIA){
+        gerbang.classList.add('terbuka');
+        document.body.style.overflow = 'auto';
+      } else {
+        errorEl.classList.add('tampil');
+        pinWrap.classList.add('salah');
+        setTimeout(()=>{
+          pinWrap.classList.remove('salah');
+          boxes.forEach(b=>b.value='');
+          boxes[0].focus();
+        },400);
+      }
+    }
+
+    document.body.style.overflow = 'hidden';
+    boxes[0].focus();
+  })();
+</script>
+
+</body>
+</html>
