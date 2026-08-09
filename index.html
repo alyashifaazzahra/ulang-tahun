@@ -518,8 +518,9 @@
     position:fixed;
     inset:0;
     z-index:9999;
-    background:radial-gradient(ellipse at 50% 20%, rgba(232,181,99,0.08), transparent 55%),
-      linear-gradient(180deg,#04050a 0%, #0a0d1c 60%, #12172c 100%);
+    background:radial-gradient(ellipse at 50% 20%, rgba(232,181,99,0.10), transparent 55%),
+      linear-gradient(180deg,rgba(4,5,10,0.55) 0%, rgba(10,13,28,0.55) 60%, rgba(18,23,44,0.55) 100%);
+    backdrop-filter:blur(1px);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -532,18 +533,6 @@
     opacity:0;
     visibility:hidden;
     pointer-events:none;
-  }
-
-  #gerbangStars{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
-  #gerbangStars .g-star{
-    position:absolute;
-    background:#fff;
-    border-radius:50%;
-    animation:gTwinkle ease-in-out infinite;
-  }
-  @keyframes gTwinkle{
-    0%,100%{opacity:.25;}
-    50%{opacity:1;}
   }
 
   .gerbang-flower{
@@ -650,8 +639,6 @@
 <button id="musicToggle" aria-label="Nyalakan/matikan musik">🔇</button>
 
 <div id="gerbangKode">
-  <div id="gerbangStars"></div>
-
   <div class="gerbang-flower">
     <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -1023,20 +1010,6 @@
 
   (function(){
     const KODE_RAHASIA = "1808";
-
-    const gStars = document.getElementById('gerbangStars');
-    for(let i=0;i<60;i++){
-      const s = document.createElement('div');
-      s.className='g-star';
-      const size = Math.random()*2+1;
-      s.style.width=size+'px';
-      s.style.height=size+'px';
-      s.style.left = Math.random()*100+'%';
-      s.style.top = Math.random()*100+'%';
-      s.style.animationDuration = (2+Math.random()*4)+'s';
-      s.style.animationDelay = (Math.random()*4)+'s';
-      gStars.appendChild(s);
-    }
 
     const boxes = Array.from(document.querySelectorAll('.pin-box'));
     const pinWrap = document.getElementById('gerbangPinBoxes');
